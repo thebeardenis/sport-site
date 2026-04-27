@@ -27,6 +27,11 @@ def exercises_page(user_id):
     #id передается только для использования в дальнейших ссылках на другие ручки
     return render_template('exercises_page')
 
+@app.route('/programs/<user_id>')
+def programs_page(user_id):
+    #id передается для использования в дальнейших ссылках на другие ручки
+    return render_template('programs_page')
+
 # КБЖУ страница, в целом у нас будет просто заглушка не рабочая
 @app.route('/nutritional/<user_id>')
 def nutritional_page(user_id):
