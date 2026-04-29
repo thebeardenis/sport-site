@@ -14,6 +14,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     subscription = db.Column(db.Boolean, default=False)
+    is_coach = db.Column(db.Boolean, default=False)
 
 # Инициализация БД на "сервере"
 with app.app_context():
