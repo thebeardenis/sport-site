@@ -1,22 +1,16 @@
 from flask import Flask
 from flask import render_template
-from flask_sqlalchemy import SQLAlchemy
+from models import db
 
 app = Flask(__name__)
 
 # Конфигурация БД
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sport_site.db'
-db = SQLAlchemy(app)
 
-# Модель юзера (создание таблицы) для дальнейшего использования в функциях
-class User(db.Model):
-    __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
-    subscription = db.Column(db.Boolean, default=False)
-    is_coach = db.Column(db.Boolean, default=False)
+# Связываем наше приложение с БД из другого файла
+db.init_app(app)
 
-# Инициализация БД на "сервере"
+# Инициализация таблиц БД на "сервере"
 with app.app_context():
     db.create_all()
 
