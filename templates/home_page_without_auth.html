@@ -3,136 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <title>7Я</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f3f4f6;
+        }
+        button:not(:disabled) {
+            transition: all 0.2s ease;
+            transform: scale(1);
+        }
+        button:not(:disabled):hover {
+            transform: scale(1.02);
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-neutural-200">
 
-<table width="100%" border="0" cellpadding="4">
-    <tr>
-        <td align="left">
-            <button>Домашняя страница</button>
-        </td>
-        <td align="right">
-            <button>Профиль</button>
-        </td>
-    </tr>
-</table>
-<hr>
+    <div class="max-w-6xl mx-auto px-4 py-6">
 
-<table width="100%" border="0" cellpadding="4">
+        <!-- ШАПКА-->
+        <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">
+                Домашняя страница
+            </button>
+            <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-6 py-2 rounded-lg shadow-md transition">
+                Профиль
+            </button>
+        </div>
 
-    <tr>
-        <td width="50%" align="center">
-            <button><big><big>Упражнения</big></big></button>
-            <br>
-            <small>300+ движений</small>
-        </td>
-        <td width="50%" align="center">
-            <button><big><big>Программы</big></big></button>
-            <br>
-            <small>готовые планы</small>
-        </td>
-    </tr>
+        <!-- ряд 1: Упражнения + Программы -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- Упражнения -->
+            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition overflow-hidden">
+                <button class="w-full p-8 text-left hover:bg-blue-50 transition">
+                    <div class="text-3xl font-extrabold text-blue-700 mb-2">Упражнения</div>
+                    <div class="text-gray-500">300+ движений с техникой</div>
+                </button>
+            </div>
+            <!-- Программы -->
+            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition overflow-hidden">
+                <button class="w-full p-8 text-left hover:bg-blue-50 transition">
+                    <div class="text-3xl font-extrabold text-blue-700 mb-2">Программы</div>
+                    <div class="text-gray-500">готовые планы тренировок</div>
+                </button>
+            </div>
+        </div>
 
-    <tr>
-        <td align="center">
-            <button disabled><big><big>БЖУ</big></big></button>
-            <br>
-            <small>Доступно только с подпиской</small>
-        </td>
-        <td align="center">
-            <button disabled><big><big>ИИ</big></big></button>
-            <br>
-            <small>Доступно только с подпиской</small>
-        </td>
-    </tr>
+        <!-- ряд 2: БЖУ + ИИ -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- БЖУ-->
+            <div class="bg-gray-100 rounded-xl shadow-md opacity-80">
+                <button disabled class="w-full p-8 text-left cursor-not-allowed">
+                    <div class="text-3xl font-extrabold text-gray-500 mb-2">БЖУ</div>
+                    <div class="text-gray-400">Доступно только с подпиской</div>
+                </button>
+            </div>
+            <!-- ИИ -->
+            <div class="bg-gray-100 rounded-xl shadow-md opacity-80">
+                <button disabled class="w-full p-8 text-left cursor-not-allowed">
+                    <div class="text-3xl font-extrabold text-gray-500 mb-2">ИИ</div>
+                    <div class="text-gray-400">Доступно только с подпиской</div>
+                </button>
+            </div>
+        </div>
 
-    <tr>
-        <td colspan="2" align="center">
-            <button disabled><big><big>Отслеживание прогресса</big></big></button>
-            <br>
-            <small>Недоступно без регистрации</small>
-        </td>
-    </tr>
-</table>
-<hr>
+        <!-- ряд 3: Отслеживание прогресса-->
+        <div class="mb-8">
+            <div class="bg-gray-100 rounded-xl shadow-md opacity-80">
+                <button disabled class="w-full p-8 text-center cursor-not-allowed">
+                    <div class="text-3xl font-extrabold text-gray-500 mb-2">Отслеживание прогресса</div>
+                    <div class="text-gray-400">Недоступно без регистрации</div>
+                </button>
+            </div>
+        </div>
 
-<table width="100%" border="0" cellpadding="6">
-    <tr>
-        <td width="50%" valign="top">
-            <h3>Новости</h3>
-            <table width="100%" border="1" cellpadding="3">
-                <tr>
-                    <td><small>15.05 - Papuas пожал 1 тонну</small></td>
-                </tr>
-                <tr>
-                    <td><small>14.05 - Мишаню придавило пустым грифом</small></td>
-                </tr>
-                <tr>
-                    <td><small>12.05 - Ден напердел в зале</small></td>
-                </tr>
-                <tr>
-                    <td><small>10.05 - День глаз</small></td>
-                </tr>
-                <tr>
-                    <td><small>08.05 - Результаты соревнований</small></td>
-                </tr>
-                <tr>
-                    <td><small>05.05 - Питание при нагрузках</small></td>
-                </tr>
-                <tr>
-                    <td><small>03.05 - Челлендж "30 дней планки"</small></td>
-                </tr>
-                <tr>
-                    <td><small>01.05 - Новый фитнес-клуб</small></td>
-                </tr>
-                <tr>
-                    <td><small>28.04 - Интервью с чемпионом</small></td>
-                </tr>
-                <tr>
-                    <td><small>25.04 - Восстановление после тренировки</small></td>
-                </tr>
-                <tr>
-                    <td><small>22.04 - Топ-5 упражнений для спины</small></td>
-                </tr>
-                <tr>
-                    <td><small>20.04 - Марафон в выходные</small></td>
-                </tr>
-            </table>
-        </td>
+        <!--новости и тренеры-->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- блок новостей -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-2xl font-bold text-gray-800 border-l-4 border-blue-500 pl-3 mb-4">Новости</h3>
+                <div class="space-y-2 max-h-96 overflow-y-auto">
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">15.05 - Papuas пожал 1 тонну</div>
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">14.05 - Мишаню придавило пустым грифом</div>
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">12.05 - Ден напердел в зале</div>
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">10.05 - День глаз</div>
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">08.05 - Результаты соревнований</div>
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">05.05 - Питание при нагрузках</div>
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">03.05 - Челлендж "30 дней планки"</div>
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">01.05 - Новый фитнес-клуб</div>
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">28.04 - Интервью с чемпионом</div>
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">25.04 - Восстановление после тренировки</div>
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">22.04 - Топ-5 упражнений для спины</div>
+                    <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">20.04 - Марафон в выходные</div>
+                </div>
+            </div>
 
-        <td width="50%" valign="top">
-            <h3>Тренеры</h3>
-            <table border="1" cellpadding="8">
-                <tr>
-                    <td>Семён Гибеев</td>
-                </tr>
-                <tr>
-                    <td>Денис Бобрулько</td>
-                </tr>
-                <tr>
-                    <td>Денис Колесник</td>
-                </tr>
-                <tr>
-                    <td>Михаил Кот</td>
-                </tr>
-                <tr>
-                    <td>Савин Святослав</td>
-                </tr>
-                <tr>
-                    <td>Вадим Непомнящих</td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
+            <!-- блок тренеров-->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-2xl font-bold text-gray-800 border-l-4 border-blue-500 pl-3 mb-4">Тренеры</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Семён Гибеев
+                    </div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Денис Бобрулько
+                    </div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Денис Колесник
+                    </div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Михаил Кот
+                    </div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Савин Святослав
+                    </div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Вадим Непомнящих
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="mt-8 pt-6 border-t border-gray-300 text-center">
+            <p class="text-gray-500 text-sm">Команда 7Я</p>
+        </div>
 
-<hr>
-<table width="100%" border="0" cellpadding="2">
-    <tr>
-        <td align="center"><small>Команда 7Я</small></td>
-    </tr>
-</table>
+    </div>
 
 </body>
 </html>
