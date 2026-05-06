@@ -1,9 +1,7 @@
 from flask import Flask
 from flask import render_template
-from models import db
-
+from models import db, User
 app = Flask(__name__)
-
 # Конфигурация БД
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sport_site.db'
 
@@ -33,7 +31,12 @@ def home_page(user_id):
 @app.route('/profile/<user_id>')
 def profile_page(user_id):
     #Должен быть запрос к бд для получения данных о пользователе
-    return render_template('profile_page.html')
+    user = User.query.filter_by(id = user_id).first()
+    is_trainer = user.is_coach
+    if is_trainer:
+        return render_template('profile_trainer_page.html')
+    else:
+        return render_template('profile_page.html')
 
 # Страница списка упражнений
 @app.route('/exercises/<user_id>')
