@@ -30,12 +30,18 @@
 
         <!-- ШАПКА-->
         <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">
+            <button onclick="window.location.href='/'" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">
                 Домашняя страница
             </button>
-            <button onclick="window.location.href='some_id'" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-6 py-2 rounded-lg shadow-md transition">
-                Войти
-            </button>
+
+            <div class="flex gap-3">
+                <button onclick="window.location.href='/registration'" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-6 py-2 rounded-lg shadow-md transition">
+                    Регистрация
+                </button>
+                <button onclick="window.location.href='/auth'" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-6 py-2 rounded-lg shadow-md transition">
+                    Войти
+                </button>
+            </div>
         </div>
 
         <!-- ряд 1: Упражнения + Программы -->

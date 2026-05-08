@@ -30,13 +30,20 @@ def home_page(user_id):
 # Страница профиля пользователя
 @app.route('/profile/<user_id>')
 def profile_page(user_id):
-    #Должен быть запрос к бд для получения данных о пользователе
     user = User.query.filter_by(id = user_id).first()
     is_trainer = user.is_coach
     if is_trainer:
         return render_template('profile_trainer_page.html')
     else:
         return render_template('profile_page.html')
+
+@app.route('/auth')
+def auth_page():
+    return render_template('auth_page.html')
+
+@app.route('/registration')
+def registration_page():
+    return render_template('registration_page.html')
 
 # Страница списка упражнений
 @app.route('/exercises/<user_id>')
