@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, jsonify, session
 from flask import render_template
 from models import db, User
 app = Flask(__name__)
@@ -36,14 +36,6 @@ def profile_page(user_id):
         return render_template('profile_trainer_page.html')
     else:
         return render_template('profile_page.html')
-
-@app.route('/auth')
-def auth_page():
-    return render_template('auth_page.html')
-
-@app.route('/registration')
-def registration_page():
-    return render_template('registration_page.html')
 
 # Страница списка упражнений
 @app.route('/exercises/<user_id>')
