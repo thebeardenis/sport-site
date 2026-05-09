@@ -25,14 +25,16 @@ def home_page_without_auth():
 @app.route('/<user_id>')
 def home_page(user_id):
     #id используется для подтверждения авторизованности и для ссылок
-    return render_template('home_page.html')
+    user = User.query.filter_by(id = user_id).first()
+    if not user:
+        return render_template('home_page_without_auth.html')
+    return render_template('home_page.html', user_id=user_id)
 
 # Страница профиля пользователя
 @app.route('/profile/<user_id>')
 def profile_page(user_id):
     user = User.query.filter_by(id = user_id).first()
-    is_trainer = user.is_coach
-    if is_trainer:
+    if user.is_coach:
         return render_template('profile_trainer_page.html')
     else:
         return render_template('profile_page.html')
@@ -67,6 +69,25 @@ def ai_page(user_id):
     return render_template('ai_page.html')
 
 
+@app.route('/create_test_data')
+def create_test_data():
+    # Создаем тестовых пользователей
+    users = [
+        User(username='alex', is_coach=False, subscription=True),
+        User(username='maria', is_coach=True, subscription=False),
+        User(username='john', is_coach=False, subscription=False),
+        User(username='sarah', is_coach=True, subscription=True),
+        User(username='denis', is_coach=False, subscription=False),
+        User(username='coach_peter', is_coach=True, subscription=False),
+    ]
+
+    for user in users:
+        existing = User.query.filter_by(username=user.username).first()
+        if not existing:
+            db.session.add(user)
+
+    db.session.commit()
+    return render_template('home_page.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
