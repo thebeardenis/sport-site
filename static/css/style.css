@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, 'Segoe UI', 'Inter', 'Roboto', sans-serif;
+    background: linear-gradient(145deg, #f4f7fc 0%, #e9eef4 100%);
+    color: #1e2a3a;
+    line-height: 1.4;
+    padding: 2rem 1.5rem;
+}
+
+.page {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* hero */
+.hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(120deg, #1e3c3f, #2b5f6b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.01em;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #4a627a;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* сетка карточек (чисто информационные) */
+.exercises {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(0px);
+    border-radius: 2rem;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+    padding: 1.8rem 1.5rem;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255,255,255,0.6);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    background: white;
+    box-shadow: 0 28px 36px -16px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+    font-size: 3.2rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    background: #eef2f7;
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+.card h2 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #0f2c33;
+    letter-spacing: -0.3px;
+}
+
+.muscle {
+    display: inline-block;
+    background: #dce5f0;
+    padding: 0.2rem 1rem;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1e4a5f;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.3px;
+}
+
+.description {
+    color: #2c3e4e;
+    font-size: 0.98rem;
+    line-height: 1.45;
+    margin-bottom: 1.2rem;
+}
+
+.tips {
+    background: #f0f4f9;
+    border-left: 4px solid #3f8e9e;
+    padding: 0.8rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.85rem;
+    color: #1e5668;
+    margin-top: 0.8rem;
+}
+
+.tips span {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #1a6c7c;
+}
+
+.footer-note {
+    text-align: center;
+    color: #5f7f9a;
+    font-size: 0.85rem;
+    margin-top: 2rem;
+    border-top: 1px solid #cbdbe0;
+    padding-top: 1.8rem;
+}

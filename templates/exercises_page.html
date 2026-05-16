@@ -1,10 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>7Я</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Упражнения</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+<div class="page">
+    <div class="hero">
+        <h1>Упражнения</h1>
+        <p>Техника, польза и лёгкие советы </p>
+    </div>
 
+    <div class="exercises">
+        <!-- Жим лежа -->
+        <div class="card">
+            <div class="card-icon">
+                <img src="static/photo/zhim.jpg" alt="Красивый чорт" style="border-radius: 15px;" width="250" height="100">
+            </div>
+            <h2>Жим лёжа</h2>
+            <div class="muscle">Грудные · Трицепс · Передняя дельта</div>
+            <div class="description">
+                Классическое базовое упражнение для развития силы и массы верхней части тела. Лёжа на горизонтальной скамье, опустите гриф к нижней части груди, затем мощно выжмите вверх.
+            </div>
+            <div class="tips">
+                <span>💡 техника</span>
+                • Лопатки сведены и прижаты к скамье<br>
+                • Ноги устойчиво стоят на полу<br>
+                • Полная амплитуда без рывков
+            </div>
+        </div>
+
+        <!-- Приседания -->
+        <div class="card">
+            <div class="card-icon">
+                <img src="static/photo/prised.jpg" alt="Красивый чорт" style="border-radius: 15px;" width="250" height="100">
+            </div>
+            <h2>Приседания</h2>
+            <div class="muscle">Квадрицепсы · Ягодицы · Поясница</div>
+            <div class="description">
+                Король нижней части тела. Держите спину прямой, таз отводите назад, колени направлены в ту же сторону, что и стопы. Опускайтесь до параллели с полом или глубже.
+            </div>
+            <div class="tips">
+                <span>💡 важные моменты</span>
+                • Грудь вперёд, взгляд прямо<br>
+                • Вес на пятках<br>
+                • Колени не выходят за носки (индивидуально)
+            </div>
+        </div>
+
+        <!-- Подтягивания -->
+        <div class="card">
+            <div class="card-icon">
+                <img src="static/photo/pod.jpg" alt="Красивый чорт" style="border-radius: 15px;" width="250" height="100">
+            </div>
+            <h2>Подтягивания</h2>
+            <div class="muscle">Широчайшие · Бицепс · Предплечья</div>
+            <div class="description">
+                Лучшее упражнение для спины и хвата. В висе на прямых руках подтянитесь так, чтобы подбородок оказался выше перекладины. Контролируйте опускание.
+            </div>
+            <div class="tips">
+                <span>💡 для прогресса</span>
+                • Хват чуть шире плеч<br>
+                • Без рывков и раскачиваний<br>
+                • Если тяжело — начинайте с негативных повторений
+            </div>
+        </div>
+
+        <!-- Планка -->
+        <div class="card">
+            <div class="card-icon">
+                <img src="static/photo/planka.png" style="border-radius: 15px;" alt="Красивый чорт" width="250" height="100">
+            </div>
+            <h2>Планка</h2>
+            <div class="muscle">Пресс · Поясница · Кора</div>
+            <div class="description">
+                Статическое упражнение для глубоких мышц корпуса. Удерживайте тело прямой линией от пяток до макушки, напрягая пресс и ягодицы. Не прогибайтесь в пояснице.
+            </div>
+            <div class="tips">
+                <span>💡 как улучшить</span>
+                • Локти строго под плечами<br>
+                • Дышите ровно, не задерживайте дыхание<br>
+                • Начните с 20-30 секунд, постепенно увеличивая время
+            </div>
+        </div>
+    </div>
+
+
+
+    <p class="text-gray-500-center text-sm">Команда 7Я </p>
+
+</div>
 </body>
 </html>
