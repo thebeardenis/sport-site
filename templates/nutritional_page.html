@@ -1,10 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>7Я</title>
+    <title>БЖУ калькулятор - 7Я</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f3f4f6;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-100">
+
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Калькулятор БЖУ</h1>
+            <p class="text-gray-500 mb-6">Рассчитайте суточную норму калорий, белков, жиров и углеводов для достижения вашей цели.</p>
+
+            <form id="bjuForm" class="space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-1">Пол</label>
+                        <select id="gender" class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-1">Возраст (лет)</label>
+                        <input type="number" id="age" value="25" class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-1">Вес (кг)</label>
+                        <input type="number" id="weight" value="70" step="1" class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-1">Рост (см)</label>
+                        <input type="number" id="height" value="170" step="1" class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-1">Уровень активности</label>
+                        <select id="activity" class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                            <option value="1.2">Минимальный (сидячий образ жизни)</option>
+                            <option value="1.375">Низкий (1-2 тренировки в неделю)</option>
+                            <option value="1.55" selected>Средний (3-5 тренировок)</option>
+                            <option value="1.725">Высокий (ежедневные тренировки)</option>
+                            <option value="1.9">Очень высокий (тяжелая работа + спорт)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-1">Цель</label>
+                        <select id="goal" class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                            <option value="0.9">Похудение (дефицит 10%)</option>
+                            <option value="1.0" selected>Поддержание веса</option>
+                            <option value="1.1">Набор массы (профицит 10%)</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button" onclick="calculate()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition">Рассчитать</button>
+            </form>
+
+            <div id="result" class="mt-8 p-5 bg-gray-50 rounded-xl hidden">
+                <h2 class="text-xl font-bold text-gray-800 mb-3">Ваша норма</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <p class="text-gray-500 text-sm">Калории</p>
+                        <p class="text-3xl font-bold text-blue-600" id="calories">0</p>
+                        <p class="text-gray-500 text-xs">ккал в день</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <p class="text-gray-500 text-sm">Белки</p>
+                        <p class="text-3xl font-bold text-green-600" id="protein">0</p>
+                        <p class="text-gray-500 text-xs">граммов</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <p class="text-gray-500 text-sm">Жиры</p>
+                        <p class="text-3xl font-bold text-yellow-600" id="fat">0</p>
+                        <p class="text-gray-500 text-xs">граммов</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <p class="text-gray-500 text-sm">Углеводы</p>
+                        <p class="text-3xl font-bold text-orange-600" id="carbs">0</p>
+                        <p class="text-gray-500 text-xs">граммов</p>
+                    </div>
+                </div>
+                <p class="text-gray-600 text-sm mt-4 p-3 bg-blue-50 rounded-lg" id="advice"></p>
+            </div>
+
+            <div class="mt-6 text-center">
+                <a href="/{{ user_id }}" class="text-blue-600 hover:underline">← На главную</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+        const gender = document.getElementById('gender').value;
+        const age = parseFloat(document.getElementById('age').value);
+        const weight = parseFloat(document.getElementById('weight').value);
+        const height = parseFloat(document.getElementById('height').value);
+        const activity = parseFloat(document.getElementById('activity').value);
+        const goal = parseFloat(document.getElementById('goal').value);
+
+        if (isNaN(age) || isNaN(weight) || isNaN(height)) {
+        alert("Пожалуйста, заполните все поля числами");
+        return;
+        }
+
+        // Формула Харриса-Бенедикта
+        let bmr;
+        if (gender === 'male') {
+        bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+        } else {
+        bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+        }
+
+        let maintenance = bmr * activity;
+        let dailyCalories = Math.round(maintenance * goal);
+
+        // Рекомендации по БЖУ (белки ~2 г/кг, жиры ~0.9 г/кг)
+        let proteinGrams = Math.round(weight * 2.0);
+        let fatGrams = Math.round(weight * 0.9);
+        let caloriesFromProtein = proteinGrams * 4;
+        let caloriesFromFat = fatGrams * 9;
+        let carbsGrams = Math.round((dailyCalories - caloriesFromProtein - caloriesFromFat) / 4);
+        if (carbsGrams < 0) carbsGrams = 0;
+
+        document.getElementById('calories').innerText = dailyCalories;
+        document.getElementById('protein').innerText = proteinGrams;
+        document.getElementById('fat').innerText = fatGrams;
+        document.getElementById('carbs').innerText = carbsGrams;
+
+        let adviceText = '';
+        if (goal === 0.9) adviceText = 'Вы выбрали похудение. Старайтесь соблюдать дефицит калорий, не урезая белок.';
+        else if (goal === 1.1) adviceText = 'Режим набора массы. Увеличивайте углеводы, тренируйтесь с отягощениями.';
+        else adviceText = 'Рацион для поддержания веса. Сбалансируйте белки, жиры и углеводы.';
+
+        document.getElementById('advice').innerHTML = '💡 Совет: ' + adviceText;
+        document.getElementById('result').classList.remove('hidden');
+        }
+    </script>
 
 </body>
 </html>

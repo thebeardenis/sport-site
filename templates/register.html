@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация - 7Я</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-96">
+        <h2 class="text-2xl font-bold text-center mb-6">Регистрация</h2>
+        <form method="post">
+            <input type="text" name="username" placeholder="Имя пользователя" required
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4">
+            <input type="password" name="password" placeholder="Пароль" required
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4">
+
+            <!-- Чекбокс для тренера -->
+            <label class="flex items-center gap-2 mb-4 cursor-pointer">
+                <input type="checkbox" name="is_coach" value="true" class="w-4 h-4">
+                <span class="text-gray-700">Зарегистрироваться как тренер</span>
+            </label>
+
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition">
+                Зарегистрироваться
+            </button>
+        </form>
+        <p class="text-center text-gray-500 mt-4">
+            Уже есть аккаунт? <a href="/login" class="text-blue-600">Войти</a>
+        </p>
+    </div>
+</body>
+</html>

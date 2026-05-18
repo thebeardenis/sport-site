@@ -35,7 +35,7 @@
             </button>
 
             <div class="flex gap-3">
-                <button onclick="window.location.href='/1'" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-6 py-2 rounded-lg shadow-md transition">
+                <button onclick="window.location.href='/login'" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">
                     Войти
                 </button>
             </div>
@@ -45,14 +45,14 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <!-- Упражнения -->
             <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition overflow-hidden">
-                <button class="w-full p-8 text-left hover:bg-blue-50 transition">
+                <button onclick="window.location.href='/exercises/0'" class="w-full p-8 text-left hover:bg-blue-50 transition">
                     <div class="text-3xl font-extrabold text-blue-700 mb-2">Упражнения</div>
                     <div class="text-gray-500">300+ движений с техникой</div>
                 </button>
             </div>
             <!-- Программы -->
             <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition overflow-hidden">
-                <button class="w-full p-8 text-left hover:bg-blue-50 transition">
+                <button onclick="window.location.href='/programs/0'" class="w-full p-8 text-left hover:bg-blue-50 transition">
                     <div class="text-3xl font-extrabold text-blue-700 mb-2">Программы</div>
                     <div class="text-gray-500">готовые планы тренировок</div>
                 </button>
@@ -60,14 +60,12 @@
         </div>
 
         <!-- ряд 2: БЖУ + ИИ -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <!-- БЖУ-->
-            <div class="bg-gray-100 rounded-xl shadow-md opacity-80">
-                <button disabled class="w-full p-8 text-left cursor-not-allowed">
-                    <div class="text-3xl font-extrabold text-gray-500 mb-2">БЖУ</div>
-                    <div class="text-gray-400">Доступно только с подпиской</div>
-                </button>
+        <div class="bg-gray-100 rounded-xl shadow-md opacity-80">
+            <div class="w-full p-8 text-left cursor-not-allowed">
+                <div class="text-3xl font-extrabold text-gray-500 mb-2">БЖУ</div>
+                <div class="text-gray-400">Доступно только после входа</div>
             </div>
+        </div>
             <!-- ИИ -->
             <div class="bg-gray-100 rounded-xl shadow-md opacity-80">
                 <button disabled class="w-full p-8 text-left cursor-not-allowed">

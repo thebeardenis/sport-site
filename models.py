@@ -28,6 +28,7 @@ class User(db.Model):
     username = db.Column(db.String(20), unique=True, nullable=False)
     subscription = db.Column(db.Boolean, default=False)
     is_coach = db.Column(db.Boolean, default=False)
+    password = db.Column(db.String(100), nullable=False, default='')
 
     progress_records = db.relationship('Progress', backref='user', lazy=True, cascade='all, delete-orphan')
 
