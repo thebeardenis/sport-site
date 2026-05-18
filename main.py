@@ -81,12 +81,14 @@ def profile_page(user_id):
 # Страница списка упражнений
 @app.route('/exercises/<user_id>')
 def exercises_page(user_id):
-    return render_template('exercises_page.html', user_id=user_id)
+    user = User.query.filter_by(id=user_id).first()
+    return render_template('exercises_page.html', user_id=user_id, user=user)
 
 # Страница программ тренировок
 @app.route('/programs/<user_id>')
 def programs_page(user_id):
-    return render_template('programs_page.html', user_id=user_id)
+    user = User.query.filter_by(id=user_id).first()
+    return render_template('programs_page.html', user_id=user_id, user=user)
 
 # КБЖУ страница, в целом у нас будет просто заглушка не рабочая
 @app.route('/nutritional/<user_id>')
