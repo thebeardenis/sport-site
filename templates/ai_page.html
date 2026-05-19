@@ -1,10 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>7Я</title>
-</head>
-<body>
+    <title>ИИ ассистент - 7Я</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f3f4f6;
+        }
 
+        .chat-message {
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <!-- Шапка -->
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-blue-600 text-xl">🤖</div>
+                    <div>
+                        <h1 class="text-white font-bold text-xl">ИИ-ассистент 7Я</h1>
+                        <p class="text-blue-100 text-xs">Ваш персональный советник по тренировкам и питанию</p>
+                    </div>
+                </div>
+                <button onclick="window.location.href='/{{ user_id }}'" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition">
+                    ← На главную
+                </button>
+            </div>
+
+            <!-- Область чата -->
+            <div id="chat-box" class="h-96 overflow-y-auto p-6 space-y-4 bg-gray-50">
+                <div class="flex justify-start">
+                    <div class="bg-white rounded-2xl rounded-tl-none px-4 py-2 shadow-sm max-w-[80%]">
+                        <p class="text-gray-700">Привет! Я виртуальный тренер. Задай мне любой вопрос о тренировках, питании или прогрессе. Например:</p>
+                        <ul class="list-disc list-inside text-sm text-gray-600 mt-2">
+                            <li>Как улучшить жим лёжа?</li>
+                            <li>Что есть после тренировки?</li>
+                            <li>Как часто тренировать ноги?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Поле ввода -->
+            <div class="border-t border-gray-200 p-4 bg-white">
+                <div class="flex gap-3">
+                    <input type="text" id="question" placeholder="Задайте вопрос..." class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                    <button id="send-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition font-medium">
+                        Отправить
+                    </button>
+                </div>
+                <p class="text-xs text-gray-400 mt-2 text-center">⚡ ИИ даёт рекомендации на основе общей базы знаний. Для точных советов проконсультируйтесь с живым тренером.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const questionInput = document.getElementById('question');
+        const sendBtn = document.getElementById('send-btn');
+
+        function addMessage(text, isUser = false) {
+        const div = document.createElement('div');
+        div.className = `flex ${isUser ? 'justify-end' : 'justify-start'} chat-message`;
+        div.innerHTML = `
+        <div class="${isUser ? 'bg-blue-600 text-white rounded-2xl rounded-tr-none' : 'bg-white text-gray-800 rounded-2xl rounded-tl-none'} px-4 py-2 shadow-sm max-w-[80%]">
+        <p>${text}</p>
+        </div>
+        `;
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function showTyping() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'flex justify-start chat-message';
+        typingDiv.id = 'typing-indicator';
+        typingDiv.innerHTML = `
+        <div class="bg-white text-gray-500 rounded-2xl rounded-tl-none px-4 py-2 shadow-sm">
+        <span>🤖 печатает...</span>
+        </div>
+        `;
+        chatBox.appendChild(typingDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function removeTyping() {
+        const typing = document.getElementById('typing-indicator');
+        if (typing) typing.remove();
+        }
+
+        async function sendQuestion() {
+        const question = questionInput.value.trim();
+        if (!question) return;
+
+        addMessage(question, true);
+        questionInput.value = '';
+        showTyping();
+
+        try {
+        const response = await fetch('/ai/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: question })
+        });
+        const data = await response.json();
+        removeTyping();
+        addMessage(data.answer);
+        } catch (error) {
+        removeTyping();
+        addMessage('⚠️ Ошибка связи с сервером. Попробуйте позже.');
+        }
+        }
+
+        sendBtn.addEventListener('click', sendQuestion);
+        questionInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendQuestion();
+        });
+    </script>
 </body>
 </html>

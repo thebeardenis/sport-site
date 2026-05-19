@@ -8,22 +8,6 @@
 </head>
 <body>
 <div class="page">
-    <!-- <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
-            <div class="flex items-center gap-4">
-                <button onclick="window.location.href='/{{ user_id }}'" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">
-                    ← На главную
-                </button>
-            </div>
-            <div class="flex items-center gap-4">
-                <div class="text-right">
-                    <p class="text-sm text-gray-500">Добрый день,</p>
-                    <p class="font-bold text-gray-800">{{ user.username }}</p>
-                </div>
-                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
-                    {{ user.username[0]|upper }}
-                </div>
-            </div>
-    </div> -->
     <div class="hero">
         <h1>Упражнения</h1>
         <p>Техника, польза и лёгкие советы </p>
@@ -33,7 +17,7 @@
         <!-- Жим лежа -->
         <div class="card">
             <div class="card-icon">
-                <img src="static/photo/zhim.jpg" alt="Красивый чорт" style="border-radius: 15px;" width="250" height="100">
+                <img src="{{ url_for('static', filename='photo/zhim.jpg') }}" alt="Жим лёжа">
             </div>
             <h2>Жим лёжа</h2>
             <div class="muscle">Грудные · Трицепс · Передняя дельта</div>
@@ -51,7 +35,7 @@
         <!-- Приседания -->
         <div class="card">
             <div class="card-icon">
-                <img src="static/photo/prised.jpg" alt="Красивый чорт" style="border-radius: 15px;" width="250" height="100">
+                <img src="{{ url_for('static', filename='photo/prised.jpg') }}" alt="Приседания">
             </div>
             <h2>Приседания</h2>
             <div class="muscle">Квадрицепсы · Ягодицы · Поясница</div>
@@ -69,7 +53,7 @@
         <!-- Подтягивания -->
         <div class="card">
             <div class="card-icon">
-                <img src="static/photo/pod.jpg" alt="Красивый чорт" style="border-radius: 15px;" width="250" height="100">
+                <img src="{{ url_for('static', filename='photo/pod.jpg') }}" alt="Подтягивания">
             </div>
             <h2>Подтягивания</h2>
             <div class="muscle">Широчайшие · Бицепс · Предплечья</div>
@@ -87,7 +71,7 @@
         <!-- Планка -->
         <div class="card">
             <div class="card-icon">
-                <img src="static/photo/planka.png" style="border-radius: 15px;" alt="Красивый чорт" width="250" height="100">
+                <img src="{{ url_for('static', filename='photo/planka.png') }}" alt="Планка">
             </div>
             <h2>Планка</h2>
             <div class="muscle">Пресс · Поясница · Кора</div>

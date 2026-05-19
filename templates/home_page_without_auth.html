@@ -4,90 +4,84 @@
     <meta charset="UTF-8">
     <title>7Я</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background: #f3f4f6;
         }
+
         button:not(:disabled) {
             transition: all 0.2s ease;
             transform: scale(1);
         }
-        button:not(:disabled):hover {
-            transform: scale(1.02);
-        }
+
+            button:not(:disabled):hover {
+                transform: scale(1.02);
+            }
+
         button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
     </style>
 </head>
-<body class="bg-neutural-200">
+<body class="bg-gray-100">
 
     <div class="max-w-6xl mx-auto px-4 py-6">
 
-        <!-- ШАПКА-->
+        <!-- ШАПКА -->
         <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
-            <button onclick="window.location.href='/'" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">
-                Домашняя страница
-            </button>
-
+            <button onclick="window.location.href='/'" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">Домашняя страница</button>
             <div class="flex gap-3">
-                <button onclick="window.location.href='/login'" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">
-                    Войти
-                </button>
+                <button onclick="window.location.href='/login'" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">Войти</button>
             </div>
         </div>
 
-        <!-- ряд 1: Упражнения + Программы -->
+        <!-- ряд 1: Упражнения + Программы (активные) -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <!-- Упражнения -->
-            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition overflow-hidden">
-                <button onclick="window.location.href='/exercises/0'" class="w-full p-8 text-left hover:bg-blue-50 transition">
+            <div onclick="window.location.href='/exercises/0'" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition overflow-hidden cursor-pointer">
+                <div class="w-full p-8 text-left hover:bg-blue-50 transition">
                     <div class="text-3xl font-extrabold text-blue-700 mb-2">Упражнения</div>
                     <div class="text-gray-500">300+ движений с техникой</div>
-                </button>
+                </div>
             </div>
-            <!-- Программы -->
-            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition overflow-hidden">
-                <button onclick="window.location.href='/programs/0'" class="w-full p-8 text-left hover:bg-blue-50 transition">
+            <div onclick="window.location.href='/programs/0'" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition overflow-hidden cursor-pointer">
+                <div class="w-full p-8 text-left hover:bg-blue-50 transition">
                     <div class="text-3xl font-extrabold text-blue-700 mb-2">Программы</div>
                     <div class="text-gray-500">готовые планы тренировок</div>
-                </button>
+                </div>
             </div>
         </div>
 
-        <!-- ряд 2: БЖУ + ИИ -->
-        <div class="bg-gray-100 rounded-xl shadow-md opacity-80">
-            <div class="w-full p-8 text-left cursor-not-allowed">
-                <div class="text-3xl font-extrabold text-gray-500 mb-2">БЖУ</div>
-                <div class="text-gray-400">Доступно только после входа</div>
+        <!-- ряд 2: БЖУ + ИИ (неактивные, серые) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-gray-100 rounded-xl shadow-md opacity-80 cursor-not-allowed">
+                <div class="w-full p-8 text-left">
+                    <div class="text-3xl font-extrabold text-gray-500 mb-2">БЖУ</div>
+                    <div class="text-gray-400">Доступно только после входа</div>
+                </div>
             </div>
-        </div>
-            <!-- ИИ -->
-            <div class="bg-gray-100 rounded-xl shadow-md opacity-80">
-                <button disabled class="w-full p-8 text-left cursor-not-allowed">
+            <div class="bg-gray-100 rounded-xl shadow-md opacity-80 cursor-not-allowed">
+                <div class="w-full p-8 text-left">
                     <div class="text-3xl font-extrabold text-gray-500 mb-2">Искусственный ассистент</div>
                     <div class="text-gray-400">Доступно только с подпиской</div>
-                </button>
+                </div>
             </div>
         </div>
 
-        <!-- ряд 3: Отслеживание прогресса-->
+        <!-- ряд 3: Отслеживание прогресса (неактивный, во всю ширину) -->
         <div class="mb-8">
-            <div class="bg-gray-100 rounded-xl shadow-md opacity-80">
-                <button disabled class="w-full p-8 text-center cursor-not-allowed">
+            <div class="bg-gray-100 rounded-xl shadow-md opacity-80 cursor-not-allowed">
+                <div class="w-full p-8 text-center">
                     <div class="text-3xl font-extrabold text-gray-500 mb-2">Отслеживание прогресса</div>
                     <div class="text-gray-400">Недоступно без регистрации</div>
-                </button>
+                </div>
             </div>
         </div>
 
-        <!--новости и тренеры-->
+        <!-- новости и тренеры (без изменений) -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            <!-- блок новостей -->
             <div class="bg-white rounded-xl shadow-md p-6">
                 <h3 class="text-2xl font-bold text-gray-800 border-l-4 border-blue-500 pl-3 mb-4">Новости</h3>
                 <div class="space-y-2 max-h-96 overflow-y-auto">
@@ -105,29 +99,15 @@
                     <div class="border-b border-gray-100 py-2 text-gray-700 text-sm">20.04 - Марафон в выходные</div>
                 </div>
             </div>
-
-            <!-- блок тренеров-->
             <div class="bg-white rounded-xl shadow-md p-6">
                 <h3 class="text-2xl font-bold text-gray-800 border-l-4 border-blue-500 pl-3 mb-4">Тренеры</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
-                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Семён Гибеев
-                    </div>
-                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
-                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Денис Бобрулько
-                    </div>
-                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
-                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Денис Колесник
-                    </div>
-                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
-                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Михаил Кот
-                    </div>
-                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
-                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Савин Святослав
-                    </div>
-                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm">
-                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Вадим Непомнящих
-                    </div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> Семён Гибеев</div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> Денис Бобрулько</div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> Денис Колесник</div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> Михаил Кот</div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> Савин Святослав</div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3 text-gray-800 font-medium flex items-center gap-2 shadow-sm"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> Вадим Непомнящих</div>
                 </div>
             </div>
         </div>
@@ -137,6 +117,5 @@
         </div>
 
     </div>
-
 </body>
 </html>

@@ -3,6 +3,7 @@ from flask import render_template
 from models import db, User
 from flask import session, redirect, url_for, request
 import hashlib
+import random
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
@@ -103,10 +104,44 @@ def nutritional_page(user_id):
 def tracker_progress_page(user_id):
     return render_template('tracker_progress_page.html', user_id=user_id)
 
-# Нейронка
 @app.route('/ai/<user_id>')
 def ai_page(user_id):
+    # Проверка авторизации (опционально, но рекомендуется)
+    if 'user_id' not in session or int(user_id) != session['user_id']:
+        return redirect(url_for('login'))
     return render_template('ai_page.html', user_id=user_id)
+
+# Нейронка
+@app.route('/ai/ask', methods=['POST'])
+def ai_ask():
+    data = request.get_json()
+    question = data.get('question', '').lower()
+    
+    # Простая логика ответов (можно расширить или подключить реальное API)
+    if 'жим' in question:
+        answer = "Для улучшения жима лёжа: работай над техникой (своди лопатки), добавь вспомогательные упражнения (отжимания на брусьях, жим гантелей) и следи за прогрессией весов."
+    elif 'присед' in question or 'приседания' in question:
+        answer = "Ключевые моменты в приседе: держи спину прямой, не заваливай колени внутрь, опускайся до параллели. Регулярно делай румынскую тягу и гиперэкстензию."
+    elif 'подтягивание' in question:
+        answer = "Чтобы подтягиваться больше: используй негативные повторения, подтягивания с резинкой, укрепляй хват. Делай 3-4 подхода по 80% от максимума."
+    elif 'планка' in question:
+        answer = "Увеличивай время в планке постепенно, добавляй боковую планку, подъёмы ног. Держи пресс и ягодицы напряжёнными."
+    elif 'еда' in question or 'питание' in question or 'бжу' in question:
+        answer = "Сбалансированное питание: белок (1.8-2.2 г/кг веса), жиры (0.8-1 г/кг), углеводы — остальное. Не забывай про овощи и воду."
+    elif 'похудеть' in question or 'жиросжигание' in question:
+        answer = "Дефицит калорий + силовые тренировки + кардио 2-3 раза в неделю. Снижай калории постепенно, сохраняй белок высоким."
+    elif 'набрать массу' in question:
+        answer = "Набор массы: профицит 200-300 ккал, упор на базовые упражнения (жим, присед, тяга), 2-3 г белка на кг веса, сон 8 часов."
+    else:
+        answers = [
+            "Регулярность важнее интенсивности. Лучше тренироваться 3 раза в неделю стабильно, чем разово на износ.",
+            "Не забывай про разминку и заминку – это снижает риск травм.",
+            "Пей воду до, во время и после тренировки. Обезвоживание снижает силу.",
+            "Прогрессируй не за счёт веса, а за счёт качества повторений. Иногда снижай рабочий вес и делай больше повторений."
+        ]
+        answer = random.choice(answers)
+    
+    return {"answer": answer}
 
 
 @app.route('/create_test_data')
