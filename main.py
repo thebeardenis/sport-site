@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, session
 from flask import render_template
-from models import db, User
+from models import db, User, Progress, ExerciseType
 from flask import session, redirect, url_for, request
 import hashlib
 import random
@@ -100,9 +100,59 @@ def nutritional_page(user_id):
     return render_template('nutritional_page.html', user=user, user_id=user_id)
 
 # Отслеживание прогресса упражнений
-@app.route('/tracker/<user_id>')
+
+@app.route('/tracker/<user_id>', methods=['GET', 'POST'])
 def tracker_progress_page(user_id):
-    return render_template('tracker_progress_page.html', user_id=user_id)
+    user = User.query.get(user_id)
+
+    if request.method == 'POST':
+        exercise_type = request.form['exercise_type']
+        sets_count = int(request.form['sets_count'])
+        reps_count = int(request.form['reps_count'])
+        weight = float(request.form['weight'])
+
+        progress = Progress(
+            exercise_type=ExerciseType[exercise_type],
+            sets_count=sets_count,
+            reps_count=reps_count,
+            weight=weight,
+            user_id=user.id
+        )
+
+        db.session.add(progress)
+        db.session.commit()
+
+        return redirect(url_for('tracker_progress_page', user_id=user_id))
+
+    progress_records = Progress.query.filter_by(user_id=user.id).order_by(Progress.exercise_date).all()
+
+    chart_labels = [record.exercise_date.strftime('%d.%m') for record in progress_records]
+    chart_weights = [record.weight for record in progress_records]
+
+    return render_template(
+        'tracker_progress_page.html',
+        user_id=user_id,
+        progress_records=progress_records,
+        exercise_types=ExerciseType,
+        chart_labels=chart_labels,
+        chart_weights=chart_weights
+    )
+
+
+@app.route('/tracker_progress/delete/<int:record_id>/<int:user_id>', methods=['POST'])
+def delete_progress_record(record_id, user_id):
+    if 'user_id' not in session or session['user_id'] != user_id:
+        return redirect(url_for('login'))
+
+    record = Progress.query.filter_by(id=record_id, user_id=user_id).first()
+
+    if record:
+        db.session.delete(record)
+        db.session.commit()
+
+    return redirect(url_for('tracker_progress_page', user_id=user_id))
+
+
 
 @app.route('/ai/<user_id>')
 def ai_page(user_id):
