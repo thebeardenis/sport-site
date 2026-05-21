@@ -193,26 +193,5 @@ def ai_ask():
     
     return {"answer": answer}
 
-
-@app.route('/create_test_data')
-def create_test_data():
-    # Создаем тестовых пользователей
-    users = [
-        User(username='alex', is_coach=False, subscription=True),
-        User(username='maria', is_coach=True, subscription=False),
-        User(username='john', is_coach=False, subscription=False),
-        User(username='sarah', is_coach=True, subscription=True),
-        User(username='denis', is_coach=False, subscription=False),
-        User(username='coach_peter', is_coach=True, subscription=False),
-    ]
-
-    for user in users:
-        existing = User.query.filter_by(username=user.username).first()
-        if not existing:
-            db.session.add(user)
-
-    db.session.commit()
-    return redirect(url_for('home_page_without_auth'))
-
 if __name__ == '__main__':
     app.run(debug=True)

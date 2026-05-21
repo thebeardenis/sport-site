@@ -54,7 +54,6 @@
                     <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white text-5xl font-bold shadow-lg">
                         В
                     </div>
-                    <button class="text-sm text-blue-600 hover:text-blue-800">Сменить фото</button>
                 </div>
 
                 <!-- Информация о пользователе -->
@@ -63,28 +62,17 @@
                         <div>
                             <h1 class="text-3xl font-bold text-gray-800">{{ user.username }}</h1>
                             <p class="text-gray-500 mt-1">@{{ user.username }}</p>
-                            <div class="flex gap-2 mt-2">
-                                <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">✅ Активная подписка</span>
-                                <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full">  PRO статус</span>
-                            </div>
                         </div>
-                        <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm transition">
-                            Редактировать профиль
-                        </button>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                         <div class="bg-gray-50 rounded-lg p-3 text-center">
                             <p class="text-gray-500 text-xs">Дата регистрации</p>
-                            <p class="font-semibold text-gray-800">15.01.2024</p>
+                            <p class="font-semibold text-gray-800">{{ user.registered_at.strftime('%d.%m.%Y') }}</p>
                         </div>
                         <div class="bg-gray-50 rounded-lg p-3 text-center">
-                            <p class="text-gray-500 text-xs">Уровень подготовки</p>
-                            <p class="font-semibold text-gray-800">Продвинутый</p>
-                        </div>
-                        <div class="bg-gray-50 rounded-lg p-3 text-center">
-                            <p class="text-gray-500 text-xs">Подписка до</p>
-                            <p class="font-semibold text-gray-800">15.12.2026</p>
+                            <p class="text-gray-500 text-xs">Подписка</p>
+                            <p class="font-semibold text-gray-800">{{ user.subscription }}</p>
                         </div>
                     </div>
                 </div>
@@ -95,58 +83,53 @@
         <h3 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">Моя статистика</h3>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div class="bg-white rounded-xl shadow-md p-4 text-center hover:shadow-lg transition">
-                <div class="text-3xl font-bold text-blue-600">127</div>
+                <div class="text-3xl font-bold text-blue-600">0</div>
                 <div class="text-gray-500 text-sm">всего тренировок</div>
-                <div class="text-xs text-green-500 mt-1">+12 за месяц</div>
+                <div class="text-xs text-green-500 mt-1">+0 за месяц</div>
             </div>
             <div class="bg-white rounded-xl shadow-md p-4 text-center hover:shadow-lg transition">
-                <div class="text-3xl font-bold text-green-600">342</div>
+                <div class="text-3xl font-bold text-green-600">0</div>
                 <div class="text-gray-500 text-sm">часов тренировок</div>
-                <div class="text-xs text-green-500 mt-1">≈ 14 дней</div>
             </div>
             <div class="bg-white rounded-xl shadow-md p-4 text-center hover:shadow-lg transition">
-                <div class="text-3xl font-bold text-orange-600">8.5</div>
-                <div class="text-gray-500 text-sm">кг потеряно</div>
+                <div class="text-3xl font-bold text-orange-600">0</div>
+                <div class="text-gray-500 text-sm">кг изменение веса</div>
                 <div class="text-xs text-green-500 mt-1">с начала года</div>
             </div>
             <div class="bg-white rounded-xl shadow-md p-4 text-center hover:shadow-lg transition">
-                <div class="text-3xl font-bold text-purple-600">12</div>
+                <div class="text-3xl font-bold text-purple-600">0</div>
                 <div class="text-gray-500 text-sm">рекордов</div>
-                <div class="text-xs text-green-500 mt-1">+3 за месяц</div>
             </div>
         </div>
 
         <!-- График прогресса (будем брать из БД) -->
         <div class="bg-white rounded-xl shadow-md p-6 mb-8">
-            <h3 class="text-lg font-bold text-gray-800 mb-4">Прогресс веса (последние 3 месяца)</h3>
+            <h3 class="text-lg font-bold text-gray-800 mb-4">Мой прогресс</h3>
             <div class="flex items-end gap-3 h-48">
                 <div class="flex-1 flex flex-col items-center">
-                    <div class="w-full bg-blue-500 rounded-t-lg" style="height: 88px;"></div>
+                    <div class="w-full bg-blue-500 rounded-t-lg" style="height: 75px;"></div>
                     <p class="text-sm text-gray-600 mt-2">Март</p>
-                    <p class="text-xs font-bold">88 кг</p>
+                    <p class="text-xs font-bold">0%</p>
                 </div>
                 <div class="flex-1 flex flex-col items-center">
-                    <div class="w-full bg-blue-500 rounded-t-lg" style="height: 86px;"></div>
+                    <div class="w-full bg-blue-500 rounded-t-lg" style="height: 75px;"></div>
                     <p class="text-sm text-gray-600 mt-2">Апрель</p>
-                    <p class="text-xs font-bold">86 кг</p>
+                    <p class="text-xs font-bold">0%</p>
                 </div>
                 <div class="flex-1 flex flex-col items-center">
-                    <div class="w-full bg-green-500 rounded-t-lg" style="height: 82px;"></div>
+                    <div class="w-full bg-blue-500 rounded-t-lg" style="height: 75px;"></div>
                     <p class="text-sm text-gray-600 mt-2">Май</p>
-                    <p class="text-xs font-bold">82 кг</p>
+                    <p class="text-xs font-bold">0%</p>
                 </div>
                 <div class="flex-1 flex flex-col items-center">
-                    <div class="w-full bg-green-500 rounded-t-lg" style="height: 79px;"></div>
+                    <div class="w-full bg-blue-500 rounded-t-lg" style="height: 75px;"></div>
                     <p class="text-sm text-gray-600 mt-2">Июнь</p>
-                    <p class="text-xs font-bold">79 кг</p>
+                    <p class="text-xs font-bold">0%</p>
                 </div>
             </div>
         </div>
         <!-- Кнопки действий -->
         <div class="flex flex-wrap gap-4 justify-center mt-8">
-            <button onclick="window.location.href=''" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-md transition">
-                Управление подпиской
-            </button>
             <button onclick="window.location.href='/logout'" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg shadow-md transition">
                 Выйти из аккаунта
             </button>
