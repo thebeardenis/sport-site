@@ -2,8 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 from enum import Enum
 from datetime import datetime
 
-from sqlalchemy.orm import backref
-
 db = SQLAlchemy()
 
 # Перечисление типов упражнений (для нашего примера хватит четырех)
@@ -21,6 +19,7 @@ class ExerciseType(Enum):
         return [(item.name, item.value) for item in cls]
 
 # Модель юзера (создание таблицы) для дальнейшего использования в функциях
+from datetime import datetime
 class User(db.Model):
     __tablename__ = 'users'
 
@@ -29,12 +28,12 @@ class User(db.Model):
     subscription = db.Column(db.Boolean, default=False)
     is_coach = db.Column(db.Boolean, default=False)
     password = db.Column(db.String(100), nullable=False, default='')
+    registered_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     progress_records = db.relationship('Progress', backref='user', lazy=True, cascade='all, delete-orphan')
 
     def __repr__(self):
         return f'<User {self.username}: coach-{self.is_coach}, subscription-{self.subscription}>'
-
 # Таблица с прогрессом упражнений
 class Progress(db.Model):
     __tablename__ = 'progress'
