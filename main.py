@@ -128,10 +128,11 @@ def tracker_progress_page(user_id):
 
     chart_labels = [record.exercise_date.strftime('%d.%m') for record in progress_records]
     chart_weights = [record.weight for record in progress_records]
-
+    user = User.query.filter_by(id=user_id).first()
     return render_template(
         'tracker_progress_page.html',
         user_id=user_id,
+        user=user,
         progress_records=progress_records,
         exercise_types=ExerciseType,
         chart_labels=chart_labels,
@@ -159,7 +160,8 @@ def ai_page(user_id):
     # Проверка авторизации (опционально, но рекомендуется)
     if 'user_id' not in session or int(user_id) != session['user_id']:
         return redirect(url_for('login'))
-    return render_template('ai_page.html', user_id=user_id)
+    user = User.query.filter_by(id=user_id).first()
+    return render_template('ai_page.html', user_id=user_id, user=user)
 
 # Нейронка
 @app.route('/ai/ask', methods=['POST'])
